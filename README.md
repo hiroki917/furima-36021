@@ -73,10 +73,7 @@
 | Column         | Type          | Option       |
 |----------------|-------------  |--------------|
 |    image       | ActiveStorage |null: false   |  
-|                |string         |null: false   |  
-|                |string         |null: false   |  
-|                |string         |null: false   |  
-|                |string         |null: false   |  
+|    item_id     | refereces    |null: false, foreign_key: true   |
 
 
 ###   Association
