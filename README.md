@@ -2,19 +2,19 @@
 
 ## users テーブル
 
-| Column            | Type          | Option        |
-|------------------ |-------------- |-------------- |
-| nickname          | string        | null: false   |  
-| encrypted_password| string        | null: false   |  
-| emil              | string        | null: false   |  
-| first_name        | string        | null: false   |  
-| last_name         | string        | null: false   |  
-| first_name_kana   | string        |null: false    |
-| last_name_kana    | string        |null: false    |
-| birth_day         | integer       |null: false    |
+| Column            | Type          | Option                       |
+|------------------ |-------------- |--------------                |
+| nickname          | string        |  null: false                 |  
+| encrypted_password| string        |  null: false                 |  
+| email             | string        |  null: false, unique: true   |  
+| first_name        | string        |  null: false                 |  
+| last_name         | string        |  null: false                 |  
+| first_name_kana   | string        |  null: false                 |
+| last_name_kana    | string        |  null: false                 |
+| birth_day         | data          |  null: false                 |
 ###   Association
-- has_many :items, through: :Purchase
-- has_many :Purchases
+- has_many :items
+- has_many :purchases
 
  
 
@@ -26,49 +26,55 @@
 
 | Column         | Type         | Option                          |
 |----------------|------------- |---------------------------------|
-|  item_name     | string       |null: false                      |  
+|  name          | string       |null: false                      |  
 |  area          | text         |null: false                      |  
 |  status        | string       |null: false                      |  
 |  days          | string       |null: false                      |  
-|  image_id      | refereces    |null: false, foreign_key: true   |  
-|  explantion    | text         |null: false                      |  
+|  explanation    | text        |null: false                      |  
 |  shipping      | text         |null: false                      |  
-|  Category      | string       |null: false                      |  
+|  category      | string       |null: false                      |  
 |  price         | integer      |null: false                      |  
 
 
 
 ###   Association
 
-- has_many :users, through: :Purchase
-- has_many :Purchases
+- belongs_to :user
+- has_one :purchases
 
 ## Purchases テーブル
 
-| Column         | Type        | Option       |
-|----------------|-------------|--------------|
-|  user_id       | refereces    |null: false, foreign_key: true   | 
-|  shipping_id   | refereces    |null: false, foreign_key: true   | 
-|  item_id       | refereces    |null: false, foreign_key: true   | 
+| Column         | Type          | Option       |
+|----------------|-------------  |--------------|
+|  user          | references    |null: false, foreign_key: true   | 
+|  item          | references    |null: false, foreign_key: true   | 
 
 
 ###   Association
 - belongs_to :user
 - belongs_to :item
-- has_one : Purchase
+- has_one    :shipping address
 
 ## Shippingsテーブル
 
-| Column         | Type        | Option                          |
-|----------------|-------------|---------------------------------|
-| adress         | text        |null: false                      |  
-| Purchase_id    |refereces    |null: false, foreign_key: true   | 
+| Column          | Type         | Option                          |
+|---------------- |------------- |---------------------------------|
+| block           | text         |                                 |  
+| card            | integer      |null: false                      |  
+| expiration_data | data         |null: false                      |  
+| security code   | integer      |null: false                      |  
+| postal code     | text         |null: false                      |  
+| prefectures     | text         |null: false                      |  
+| municipalities  | text         |null: false                      |  
+| prefectures     | text         |null: false                      |  
+| telephone number| integer      |null: false                      |  
+| purchase        | references   |null: false, foreign_key: true   | 
 
 
 ###   Association
-- belongs_to :Purchase
+- belongs_to :purchase
 
-## items_imagesテーブル
+<!-- ## items_imagesテーブル
 
 | Column         | Type          | Option       |
 |----------------|-------------  |--------------|
@@ -77,4 +83,4 @@
 
 
 ###   Association
-- belongs_to :item
+- belongs_to :item -->
