@@ -11,7 +11,7 @@
 | last_name         | string        |  null: false                 |  
 | first_name_kana   | string        |  null: false                 |
 | last_name_kana    | string        |  null: false                 |
-| birth_day         | data          |  null: false                 |
+| birth_day         | date          |  null: false                 |
 ###   Association
 - has_many :items
 - has_many :purchases
@@ -27,15 +27,16 @@
 | Column         | Type         | Option                          |
 |----------------|------------- |---------------------------------|
 |  name          | string       |null: false                      |  
-|  area          | text         |null: false                      |  
-|  status        | string       |null: false                      |  
-|  days          | string       |null: false                      |  
-|  explanation    | text        |null: false                      |  
-|  shipping      | text         |null: false                      |  
-|  category      | string       |null: false                      |  
+|  area          | Integer      |null: false                      |  
+|  status        | Integer      |null: false                      |  
+|  day           | Integer      |null: false                      |  
+|  explanation   | text         |null: false                      |  
+|  shipping      | Integer      |null: false                      |  
+|  category      | Integer      |null: false                      |  
 |  price         | integer      |null: false                      |  
-
-
+|  ActiveHash_id | integer      |null: false                      |  
+|  user          | references   |null: false, foreign_key: true   | 
+| prefecture     | text         |null: false                      |  
 
 ###   Association
 
@@ -57,18 +58,17 @@
 
 ## Shippingsテーブル
 
-| Column          | Type         | Option                          |
-|---------------- |------------- |---------------------------------|
-| block           | text         |                                 |  
-| card            | integer      |null: false                      |  
-| expiration_data | data         |null: false                      |  
-| security code   | integer      |null: false                      |  
-| postal code     | text         |null: false                      |  
-| prefectures     | text         |null: false                      |  
-| municipalities  | text         |null: false                      |  
-| prefectures     | text         |null: false                      |  
-| telephone number| integer      |null: false                      |  
-| purchase        | references   |null: false, foreign_key: true   | 
+| Column           | Type         | Option                          |
+|----------------  |------------- |---------------------------------|
+| block            | text         |                                 |  
+|"expiration_data" | date         |null: false                      |  
+| security code    | integer      |null: false                      |  
+| postal code      | string       |null: false                      |  
+| prefectures      | string       |null: false                      |  
+| municipalities   | string       |null: false                      |  
+|"telephone_number"| string      |null: false                      |  
+| purchase         | references   |null: false, foreign_key: true   | 
+| ActiveHash_id    | integer      |null: false                      |  
 
 
 ###   Association
