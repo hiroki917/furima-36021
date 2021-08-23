@@ -27,16 +27,14 @@
 | Column         | Type         | Option                          |
 |----------------|------------- |---------------------------------|
 |  name          | string       |null: false                      |  
-|  area          | Integer      |null: false                      |  
-|  status        | Integer      |null: false                      |  
-|  day           | Integer      |null: false                      |  
+|  area_id       | integer      |null: false                      |  
+|  status_id     | integer      |null: false                      |  
+|  day_id        | integer      |null: false                      |  
 |  explanation   | text         |null: false                      |  
-|  shipping      | Integer      |null: false                      |  
-|  category      | Integer      |null: false                      |  
+|  shipping_id   | integer      |null: false                      |  
+|  category_id   | integer      |null: false                      |  
 |  price         | integer      |null: false                      |  
-|  ActiveHash_id | integer      |null: false                      |  
-|  user          | references   |null: false, foreign_key: true   | 
-| prefecture     | text         |null: false                      |  
+|  user          | references   |null: false, foreign_key: true   |   
 
 ###   Association
 
@@ -61,15 +59,12 @@
 | Column           | Type         | Option                          |
 |----------------  |------------- |---------------------------------|
 | block            | text         |                                 |  
-|"expiration_data" | date         |null: false                      |  
-| security code    | integer      |null: false                      |  
-| postal code      | string       |null: false                      |  
-| prefectures      | string       |null: false                      |  
-| municipalities   | string       |null: false                      |  
-|"telephone_number"| string      |null: false                      |  
+| telephone_number | string       |null: false                      |  
+| building_name    | string       |null: false                      |  
+| purchase         | references   |null: false, foreign_key: true   |     
+| area_id          | integer      |null: false                      |  
 | purchase         | references   |null: false, foreign_key: true   | 
-| ActiveHash_id    | integer      |null: false                      |  
-
+ 
 
 ###   Association
 - belongs_to :purchase
