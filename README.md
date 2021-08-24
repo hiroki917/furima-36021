@@ -1,24 +1,83 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column            | Type          | Option                       |
+|------------------ |-------------- |--------------                |
+| nickname          | string        |  null: false                 |  
+| email             | string        |  null: false, unique: true   |  
+| encrypted_password| string        |  null: false                 |  
+| first_name        | string        |  null: false                 |  
+| last_name         | string        |  null: false                 |  
+| first_name_kana   | string        |  null: false                 |
+| last_name_kana    | string        |  null: false                 |
+| birth_day         | date          |  null: false                 |
+###   Association
+- has_many :items
+- has_many :purchases
 
-* Ruby version
+ 
 
-* System dependencies
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+## itemsテーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column              | Type         | Option                          |
+|---------------------|------------- |---------------------------------|
+|  name               | string       |null: false                      |  
+|  explanation        | text         |null: false                      |  
+|  category_id        | integer      |null: false                      |  
+|  status_id          | integer      |null: false                      | 
+|  shipping_charge_id | integer      |null: false                      | 
+|  area_id            | integer      |null: false                      |  
+|  day_id             | integer      |null: false                      |  
+|  price              | integer      |null: false                      |  
+|  user               | references   |null: false, foreign_key: true   |   
 
-* Deployment instructions
+###   Association
 
-* ...
+- belongs_to :user
+- has_one :purchase
+
+## Purchases テーブル
+
+| Column         | Type          | Option       |
+|----------------|-------------  |--------------|
+|  user          | references    |null: false, foreign_key: true   | 
+|  item          | references    |null: false, foreign_key: true   | 
+
+
+###   Association
+- belongs_to :user
+- belongs_to :item
+- has_one    :shipping address
+
+## Shippings addressテーブル
+
+| Column           | Type         | Option                          |
+|----------------  |------------- |---------------------------------|
+| postal_code      | string       |null: false                      |  
+| area_id          | integer      |null: false                      |  
+| municipalities   | string       |null: false                      |  
+| house_number     | string       |null: false                      |  
+| building_name    | string       |                                 |  
+| telephone_number | string       |null: false                      |  
+| purchase         | references   |null: false, foreign_key: true   |    
+
+ 
+
+###   Association
+- belongs_to :purchase
+
+<!-- ## items_imagesテーブル
+
+| Column         | Type          | Option       |
+|----------------|-------------  |--------------|
+|    image       | ActiveStorage |null: false   |  
+|    item_id     | refereces    |null: false, foreign_key: true   |
+
+
+###   Association
+- belongs_to :item -->
