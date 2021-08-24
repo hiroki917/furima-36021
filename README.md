@@ -24,17 +24,17 @@
 
 ## itemsテーブル
 
-| Column         | Type         | Option                          |
-|----------------|------------- |---------------------------------|
-|  name          | string       |null: false                      |  
-|  explanation   | text         |null: false                      |  
-|  category_id   | integer      |null: false                      |  
-|  status_id     | integer      |null: false                      | 
-| shipping_charge| integer      |null: false                      | 
-|  area_id       | integer      |null: false                      |  
-|  day_id        | integer      |null: false                      |  
-|  price         | integer      |null: false                      |  
-|  user          | references   |null: false, foreign_key: true   |   
+| Column              | Type         | Option                          |
+|---------------------|------------- |---------------------------------|
+|  name               | string       |null: false                      |  
+|  explanation        | text         |null: false                      |  
+|  category_id        | integer      |null: false                      |  
+|  status_id          | integer      |null: false                      | 
+|  shipping_charge_id | integer      |null: false                      | 
+|  area_id            | integer      |null: false                      |  
+|  day_id             | integer      |null: false                      |  
+|  price              | integer      |null: false                      |  
+|  user               | references   |null: false, foreign_key: true   |   
 
 ###   Association
 
@@ -61,7 +61,7 @@
 | postal_code      | string       |null: false                      |  
 | area_id          | integer      |null: false                      |  
 | municipalities   | string       |null: false                      |  
-| house_number     | integer      |null: false                      |  
+| house_number     | string       |null: false                      |  
 | building_name    | string       |                                 |  
 | telephone_number | string       |null: false                      |  
 | purchase         | references   |null: false, foreign_key: true   |    
