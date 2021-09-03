@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   has_one_attached :image
+  # has_one :purchase
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :status
@@ -8,7 +9,6 @@ class Item < ApplicationRecord
   belongs_to :day
   belongs_to :user
 
-  
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :area_id
     validates :category_id
