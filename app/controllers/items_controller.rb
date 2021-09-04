@@ -32,10 +32,10 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-
-  def desotroy
+  
+  def destroy
     item = Item.find(params[:id])
-    redirect_to root_path if item.desotroy
+    redirect_to root_path if item.destroy
   end
 
   private
