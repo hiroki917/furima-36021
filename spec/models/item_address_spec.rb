@@ -75,6 +75,11 @@ RSpec.describe ItemAddress, type: :model do
       @item_address.valid?
       expect(@item_address.errors.full_messages).to include("Telephone number is invalid")
     end
+    it 'telephone_numberが全角数字だと出品できない' do
+      @item_address.telephone_number = '２０００２０００２００'
+      @item_address.valid?
+      expect(@item_address.errors.full_messages).to include('Telephone number Input only number')
+    end
   end
  
  

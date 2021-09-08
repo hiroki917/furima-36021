@@ -1,18 +1,16 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:index, :create]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :prevent_url, only: [:index, :create]
   before_action :sold_out_item, only: [:index]
   def index
-   
+    
     @item_address =  ItemAddress.new
-    @item = Item.find(params[:item_id])
+   
   end
 
   def create
     @item_address =  ItemAddress.new(donation_params)  
-    
-    @item = Item.find(params[:item_id])
 
     if @item_address.valid?
       
@@ -51,7 +49,7 @@ class OrdersController < ApplicationController
   end
 
   def prevent_url
-    if @item.user.id == current_user.id || @item.purchase != nil
+    if @item.user_id == current_user.id || @item.purchase != nil
       redirect_to root_path
     end
   end
