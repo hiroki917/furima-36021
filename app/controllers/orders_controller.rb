@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :set_order, only: [:index, :create]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :prevent_url, only: [:index, :create]
   before_action :sold_out_item, only: [:index]
   def index
    
@@ -29,7 +32,9 @@ class OrdersController < ApplicationController
   end
 
   def sold_out_item
-    redirect_to root_path if @item.purchase.present?
+    if @item.purchase.present?
+    redirect_to root_path 
+    end
    end
 
   def pay_item
@@ -39,5 +44,15 @@ class OrdersController < ApplicationController
       card: donation_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def set_order
+    @item = Item.find(params[:item_id])
+  end
+
+  def prevent_url
+    if @item.user.id == current_user.id || @item.purchase != nil
+      redirect_to root_path
+    end
   end
 end

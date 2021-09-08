@@ -17,7 +17,7 @@ RSpec.describe ItemAddress, type: :model do
       expect(@item_address).to be_valid
     end
   end
-  # 正しいCON
+  
 
   context '内容に問題がある場合' do
     it 'postal_codeが空だと保存できないこと' do
@@ -76,8 +76,7 @@ RSpec.describe ItemAddress, type: :model do
       expect(@item_address.errors.full_messages).to include("Telephone number is invalid")
     end
   end
-  # 負end
+ 
  
  end
 end
-# rsend
