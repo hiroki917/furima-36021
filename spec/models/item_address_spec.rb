@@ -60,6 +60,21 @@ RSpec.describe ItemAddress, type: :model do
       @item_address.valid?
       expect(@item_address.errors.full_messages).to include("Item can't be blank")
     end
+    it "tokenが空では登録できないこと" do
+      @item_address.token = nil
+      @item_address.valid?
+      expect(@item_address.errors.full_messages).to include("Token can't be blank")
+    end
+    it "telephone_numberが9桁だと保存できないこと" do
+      @item_address.telephone_number = '123456789'
+      @item_address.valid?
+      expect(@item_address.errors.full_messages).to include("Telephone number is invalid")
+    end
+    it "telephone_numberが12桁だと保存できないこと" do
+      @item_address.telephone_number = '123456789012'
+      @item_address.valid?
+      expect(@item_address.errors.full_messages).to include("Telephone number is invalid")
+    end
   end
   # 負end
  
