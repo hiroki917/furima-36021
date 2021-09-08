@@ -30,11 +30,11 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      
+
       render :edit
     end
   end
-  
+
   def destroy
     item = Item.find(params[:id])
     redirect_to root_path if item.destroy
@@ -56,8 +56,6 @@ class ItemsController < ApplicationController
   end
 
   def prevent_url
-    if @item.user_id != current_user.id || @item.purchase != nil  
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.user_id != current_user.id || !@item.purchase.nil?
   end
 end
