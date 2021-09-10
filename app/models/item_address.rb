@@ -8,12 +8,12 @@ class ItemAddress
     validates :area_id
     validates :municipalities
     validates :house_number
-    validates :telephone_number, numericality: { only_integer: true, message: 'Input only number' }
-    validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
     validates :token
     validates :user_id
     validates :item_id
+    validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
   end
+  validates :telephone_number, numericality: { only_integer: true, message: 'Input only number' }
   validates :area_id, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
