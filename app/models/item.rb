@@ -18,7 +18,7 @@ class Item < ApplicationRecord
     validates :shipping_charge_id
   end
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
-  validates :price, numericality: { only_integer: true }
+  validates :price, numericality: { only_integer: true , message: "Half-width number" }
   validates :name, :explanation, :category_id, :status_id,
             :shipping_charge_id, :area_id, :day_id, :price, :image, presence: true
 end

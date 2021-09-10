@@ -9,11 +9,9 @@
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
       <% if @item.purchase.present? %> 
-      
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
-     
       <% end %>
     </div>
     <div class="item-price-box">
@@ -25,20 +23,16 @@
       </span>
     </div>
 
-    
     <% if user_signed_in? && @item.purchase == nil %>
       <% if current_user == @item.user%>
          <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
          <p class="or-text">or</p>
           <%= link_to "削除", item_path(@item), method: :delete, class:"item-destroy" %>
      <% else %>
-  
     <%= link_to "購入画面に進む", item_orders_path(@item.id) ,class:"item-red-btn"%>
-  
       <% end  %>
     <% end  %>
-
-   
+ 
     <div class="item-explain-box">
       <span><%= @item.explanation %></span>
     </div>
