@@ -1,5 +1,8 @@
 function post (){
   const priceInput = document.getElementById("item-price");
+  if (!priceInput){
+    return null;
+  }
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
     
